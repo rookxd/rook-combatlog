@@ -18,6 +18,19 @@ AddEventHandler('hasar-sil', function()
     end
 end)
 
+RegisterNetEvent('hasar-kontrol')
+AddEventHandler('hasar-kontrol', function()
+    local Player = QBCore.Functions.GetPlayer(source)
+    if Player then
+    local citizenid = Player.PlayerData.citizenid
+
+
+    if hasarlioyuncu[citizenid] then
+        TriggerClientEvent('hospital:client:RespawnAtHospital', Player.PlayerData.source)
+        hasarlioyuncu[citizenid] = nil
+    end
+end
+end)
 
 AddEventHandler('playerDropped', function(reason)
     local src = source
@@ -83,20 +96,6 @@ AddEventHandler('playerDropped', function(reason)
         hasar[src] = nil
         hasarlioyuncu[citizenid] = true
     end
-end)
-
-RegisterNetEvent('hasar-kontrol')
-AddEventHandler('hasar-kontrol', function()
-    local Player = QBCore.Functions.GetPlayer(source)
-    if Player then
-    local citizenid = Player.PlayerData.citizenid
-
-
-    if hasarlioyuncu[citizenid] then
-        TriggerClientEvent('hospital:client:RespawnAtHospital', Player.PlayerData.source)
-        hasarlioyuncu[citizenid] = nil
-    end
-end
 end)
 
 
